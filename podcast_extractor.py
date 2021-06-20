@@ -63,16 +63,6 @@ def index():
         f=" ".join(clean.split())
         descs.append(f)
 
-
-    # https://anchor.fm/oijpcr/embed/episodes/OIJPCR-Dialogue-Part-1-e10i67m
-    # sample href link = f'https://anchor.fm/{name}/embed/episodes/{title}-{id}'
-    # for podcast author title with more than one word, we need to put '-' between each word. ex : DSC VIT becomes dsc-vit, OIJPCR becomes oijpcr
-    # for title put '-' between each word. OIJPCR Dialogue Part 1  becomes OIJPCR-Dialogue-Part-1'
-    # add id at the end : OIJPCR-Dialogue-Part-1-e10i67m'
-
-
-
-    
     linksss=unique(links)
 
 #getting content in correct order

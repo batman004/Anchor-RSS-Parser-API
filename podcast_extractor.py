@@ -10,9 +10,8 @@ app=Flask(__name__)
 CORS(app)
 app.config["SECRET_KEY"]=os.environ['SECRET_KEY']
 
-# rss_url= 'https://anchor.fm/s/3c55a5f0/podcast/rss'
-# rss_url='https://anchor.fm/s/27fb166c/podcast/rss'
-rss_url='https://anchor.fm/s/91b81a0/podcast/rss'
+
+rss_url=''
 
 titles=[]
 descs=[]

@@ -3,11 +3,12 @@ from flask_cors import CORS,cross_origin
 import feedparser
 import lxml.html
 import lxml.html.clean
+import os
 import re
 
 app=Flask(__name__)
 CORS(app)
-app.config["SECRET_KEY"]="thisisasecretkeylezgo"
+app.config["SECRET_KEY"]=os.environ['SECRET_KEY']
 
 # rss_url= 'https://anchor.fm/s/3c55a5f0/podcast/rss'
 # rss_url='https://anchor.fm/s/27fb166c/podcast/rss'

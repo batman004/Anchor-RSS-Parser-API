@@ -1,8 +1,6 @@
 from flask import Flask,jsonify,request
 from flask_cors import CORS,cross_origin
 import feedparser
-import lxml.html
-import lxml.html.clean
 import os
 import re
 
@@ -49,14 +47,15 @@ def index():
     for i in range (len(parser.entries)):
 
         title=parser.entries[i].title
-
         titles.append(title)
+        
         date=parser.entries[i].published[5:16]
-        cnt=0
         dates.append(date)
+        
         link=parser.entries[i].link
         flink=create_embed_link(link)
         links.append(flink)
+        
         desc=parser.entries[i].description
         clean=cleanhtml(desc)
         f=" ".join(clean.split())

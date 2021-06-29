@@ -1,15 +1,14 @@
 from flask import Flask,jsonify,request
 from flask_cors import CORS,cross_origin
 import feedparser
+from markupsafe import escape
 import os
 import re
 
 app=Flask(__name__)
 CORS(app)
-app.config["SECRET_KEY"]=os.environ['SECRET_KEY']
-
-
-rss_url=''
+# app.config["SECRET_KEY"]=os.environ['SECRET_KEY']
+app.config["SECRET_KEY"]="Thisnisasecertertukeyu4758974892"
 
 titles=[]
 descs=[]
@@ -35,13 +34,22 @@ def create_embed_link(pod_url):
     return final
 
 
+
 @app.route('/')
 @cross_origin()
-def index():
+def home():
+
+    return "Welcome to the unofficial anchor API"
 
 
 
-    parser= feedparser.parse(rss_url)
+@app.route('/path/<path:rss_url>')
+@cross_origin()
+def index(rss_url):
+
+    rss=rss_url
+
+    parser= feedparser.parse(rss)
     
 
     for i in range (len(parser.entries)):
@@ -63,7 +71,7 @@ def index():
 
     linksss=unique(links)
 
-#getting content in correct order
+    #getting content in correct order
 
     linksss.reverse()
     titles.reverse()
@@ -73,7 +81,7 @@ def index():
 
     len1=len(linksss)
 
-#storing data of each podcast
+    #storing data of each podcast
     results=[]
 
     for i in range(len1):

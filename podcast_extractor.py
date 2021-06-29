@@ -7,8 +7,7 @@ import re
 
 app=Flask(__name__)
 CORS(app)
-# app.config["SECRET_KEY"]=os.environ['SECRET_KEY']
-app.config["SECRET_KEY"]="Thisnisasecertertukeyu4758974892"
+app.config["SECRET_KEY"]=os.environ['SECRET_KEY']
 
 titles=[]
 descs=[]

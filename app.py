@@ -10,10 +10,10 @@ CORS(app)
 # app.config['SECRET_KEY']=ENV['SECRET_KEY']
 
 
-titles=[]
-descs=[]
-links=[]
-dates=[]
+titles=[] # will contain the title 
+descs=[] # will contain the description each item
+links=[] # corresponding links will be stored here
+dates=[] # each item's date will be stored in a particluar format
 
     
 def cleanhtml(raw_html):
@@ -35,10 +35,10 @@ def create_embed_link(pod_url):
 
 
 
-@app.route('/')
+@app.route('/') #default root route
 @cross_origin()
 def home():
-    result={"message":"Welcome to the unofficial anchor.fm API"}
+    result={"message":"Welcome to the unofficial anchor.fm API built to test endpoints"}
 
     return jsonify(result)
 
@@ -55,24 +55,24 @@ def index(rss_url):
 
     for i in range (len(parser.entries)):
 
-        title=parser.entries[i].title
+        title=parser.entries[i].title # parse the title field 
         titles.append(title)
         
-        date=parser.entries[i].published[5:16]
+        date=parser.entries[i].published[5:16] # parse the date field
         dates.append(date)
         
-        link=parser.entries[i].link
+        link=parser.entries[i].link # parse the link field  
         flink=create_embed_link(link)
         links.append(flink)
         
-        desc=parser.entries[i].description
+        desc=parser.entries[i].description # parse the description field  
         clean=cleanhtml(desc)
         f=" ".join(clean.split())
         descs.append(f)
 
     linksss=unique(links)
 
-    #getting content in correct order
+    #getting content in correct order before saving
 
     linksss.reverse()
     titles.reverse()
@@ -82,7 +82,7 @@ def index(rss_url):
 
     len1=len(linksss)
 
-    #storing data of each podcast
+    #storing data of each podcast in results
     results=[]
 
     for i in range(len1):
